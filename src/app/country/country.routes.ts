@@ -3,6 +3,7 @@ import { CountryLayoutComponent } from './layouts/CountryLayout/CountryLayout';
 import { ByCapitalPageComponent } from './pages/by-capital-page/by-capital-page';
 import { ByCountryPageComponent } from './pages/by-country-page/by-country-page';
 import { ByRegionPageComponent } from './pages/by-region-page/by-region-page';
+import { CountryPageComponent } from './pages/country-page/country-page';
 
 export const countryRoutes: Routes = [
 
@@ -23,6 +24,11 @@ export const countryRoutes: Routes = [
       {
         path: 'by-region',
         component: ByRegionPageComponent
+      },
+
+      {
+        path: 'by/:code',
+        component: CountryPageComponent
       },
 
       {
