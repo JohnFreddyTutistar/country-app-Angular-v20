@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SearchInputComponent } from "../../../shared/components/search-input/search-input";
 import { ListComponent } from "../../../shared/components/list/list";
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'by-capital-page',
@@ -9,8 +10,15 @@ import { ListComponent } from "../../../shared/components/list/list";
 })
 export class ByCapitalPageComponent {
 
+  countryService = inject(CountryService);
+
   onSearch(value: string){
-    console.log({value})
+    this.countryService.searchByCapital(value).
+      subscribe(res => {
+        // if(value === ){
+
+        // }
+      })
   }
 
 }
