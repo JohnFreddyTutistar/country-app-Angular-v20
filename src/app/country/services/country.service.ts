@@ -24,7 +24,23 @@ export class CountryService {
         catchError(error => {
           console.log(error)
 
-          return throwError(() => new Error(`No existe la capital <span class="secondary">${query}</span>, intenta nuevamente`))
+          return throwError(() => new Error(`No existe la capital ${query}, intenta nuevamente`))
+        })
+      )
+
+  }
+
+  searchByCountry( query: string ): Observable<Country[]> {
+
+    query = query.toLowerCase();
+
+    return this.http.get<RESTCountry[]>(`${API_URL}/name/${query}`)
+      .pipe(
+        map(restCountries => CountryMapper.mapRestCountrytoCountryArray(restCountries)),
+        catchError(error => {
+          console.log(error)
+
+          return throwError(() => new Error(`No existe el país ${query}, intenta nuevamente`))
         })
       )
 

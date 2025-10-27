@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { SearchInputComponent } from "../../../shared/components/search-input/search-input";
 import { ListComponent } from "../../../shared/components/list/list";
 import { CountryService } from '../../services/country.service';
-import { RESTCountry } from '../../interfaces/rest-countries.interface';
 import { Country } from '../../interfaces/country.interface';
 
 @Component({
