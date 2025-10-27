@@ -22,7 +22,7 @@
           <th>
             <span class="badge badge-success">{{ country.population | number }}</span>
           </th>
-          <th> <a class="link-info cursor-pointer">Más información</a> </th>
+          <th> <a [routerLink]="['/country/by', country.cca2]" class="link-info cursor-pointer">Más información</a> </th>
         </tr>
       }
     </tbody>
