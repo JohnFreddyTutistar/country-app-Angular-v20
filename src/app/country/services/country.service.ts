@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { RESTCountry } from '../interfaces/rest-countries.interface';
-import { map, Observable, catchError, throwError } from 'rxjs';
+import { map, Observable, catchError, throwError, delay } from 'rxjs';
 import { Country } from '../interfaces/country.interface';
 import { CountryMapper } from '../mappers/country.mapper';
 
@@ -41,6 +41,21 @@ export class CountryService {
           console.log(error)
 
           return throwError(() => new Error(`No existe el país ${query}, intenta nuevamente`))
+        })
+      )
+
+  }
+
+  searchCountryByAlphaCode( code: string ) {
+
+    return this.http.get<RESTCountry[]>(`${API_URL}/alpha/${code}`)
+      .pipe(
+        map(restCountries => CountryMapper.mapRestCountrytoCountryArray(restCountries)),
+        map( countries => countries.at(0) ),
+        catchError(error => {
+          console.log(error)
+
+          return throwError(() => new Error(`No existe el país con ese código ${code}`))
         })
       )
 
